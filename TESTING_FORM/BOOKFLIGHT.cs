@@ -72,7 +72,7 @@ namespace TESTING_FORM
 
         private void BOOKFLIGHT_Load(object sender, EventArgs e)
         {
-            // means can select date up to 100 days from now
+            // means can select date up to 100 days from selected initial date
             monthCalendar1.MaxSelectionCount = 100;
             // means date today only no date below current date
             monthCalendar1.ShowToday = true;

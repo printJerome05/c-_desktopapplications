@@ -7,11 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace TESTING_FORM
 {
     public partial class LoginForm : Form
     {
+        public static string databaseemail;
+        public static string databasepassword;
+        DataTable dtable = new DataTable();
+     
+        SqlConnection conn = new SqlConnection(@"Data Source=JeromeMarco;Initial Catalog=testusers;Integrated Security=True");
+
         public LoginForm()
         {
             InitializeComponent();
@@ -103,6 +110,95 @@ namespace TESTING_FORM
             BOOKFLIGHT bf = new BOOKFLIGHT();
             bf.Show();
             this.Hide();
+        }
+
+        private void button_datatables_Click(object sender, EventArgs e)
+        {
+            DataTables dts = new DataTables();
+            dts.Show();
+            this.Hide();
+        }
+
+        private void button_datagrid_Click(object sender, EventArgs e)
+        {
+            DataGrid dg = new DataGrid();
+            dg.Show();
+            this.Hide();
+        }
+
+        private void button_registerdatabase_Click(object sender, EventArgs e)
+        {
+            Registerwithdatabase rwdb = new Registerwithdatabase();
+            rwdb.Show();
+            this.Hide();
+        }
+
+        private void textBox_emaildatabase_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_logindatabase_Click(object sender, EventArgs e)
+        {
+            databaseemail = textBox_emaildatabase.Text;
+            databasepassword = textBox_passworddatabase.Text;
+
+            if (textBox_emaildatabase.Text == "")
+            {
+                MessageBox.Show("NO email entered");
+            }
+            else if (textBox_passworddatabase.Text == "")
+            {
+                MessageBox.Show("NO password Entered");
+            }
+            else {
+                try
+                {
+                    conn.Open();
+                   
+                    // need to sset modifiers of textbox of targeted input box
+                    // this string querry value is a querry that we will run on the sql table database
+                    String querry = "SELECT * FROM Users WHERE email = '" + textBox_emaildatabase.Text + "'AND password = '" + textBox_passworddatabase.Text + "'";
+
+                    //converting the string querry for it to be a sqlcommand
+                    SqlDataAdapter sda = new SqlDataAdapter(querry, conn);
+
+                    sda.Fill(dtable);
+                    
+
+                    if (dtable.Rows.Count > 0)
+                    {
+                        databaseemail = textBox_emaildatabase.Text;
+                        databasepassword = textBox_passworddatabase.Text;
+
+                        //page to be loaded
+                        Form1 f1 = new Form1();
+                        f1.Show();
+                        this.Hide();
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Wrong Email/Password");
+                        textBox_emaildatabase.Text = "";
+                        textBox_passworddatabase.Text = "";
+                    }
+
+
+                }
+                catch
+                {
+                    MessageBox.Show("No user Found");
+
+
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+           
+
         }
     }
 }

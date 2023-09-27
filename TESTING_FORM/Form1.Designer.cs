@@ -33,6 +33,8 @@
             btn_set = new Button();
             btn_cancel = new Button();
             btn_logout = new Button();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -47,7 +49,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(118, 183);
+            label2.Location = new Point(788, 161);
             label2.Name = "label2";
             label2.Size = new Size(38, 15);
             label2.TabIndex = 1;
@@ -55,7 +57,7 @@
             // 
             // btn_set
             // 
-            btn_set.Location = new Point(108, 229);
+            btn_set.Location = new Point(778, 207);
             btn_set.Name = "btn_set";
             btn_set.Size = new Size(75, 23);
             btn_set.TabIndex = 2;
@@ -65,7 +67,7 @@
             // 
             // btn_cancel
             // 
-            btn_cancel.Location = new Point(189, 229);
+            btn_cancel.Location = new Point(859, 207);
             btn_cancel.Name = "btn_cancel";
             btn_cancel.Size = new Size(75, 23);
             btn_cancel.TabIndex = 3;
@@ -75,7 +77,7 @@
             // 
             // btn_logout
             // 
-            btn_logout.Location = new Point(700, 357);
+            btn_logout.Location = new Point(12, 5);
             btn_logout.Name = "btn_logout";
             btn_logout.Size = new Size(75, 23);
             btn_logout.TabIndex = 4;
@@ -83,11 +85,21 @@
             btn_logout.UseVisualStyleBackColor = true;
             btn_logout.Click += btn_logout_Click;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(12, 47);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(316, 458);
+            dataGridView1.TabIndex = 5;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(980, 738);
+            Controls.Add(dataGridView1);
             Controls.Add(btn_logout);
             Controls.Add(btn_cancel);
             Controls.Add(btn_set);
@@ -96,6 +108,7 @@
             Name = "Form1";
             Text = "MainForm";
             Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -107,5 +120,6 @@
         private Button btn_set;
         private Button btn_cancel;
         private Button btn_logout;
+        private DataGridView dataGridView1;
     }
 }
